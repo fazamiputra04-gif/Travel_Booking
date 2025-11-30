@@ -1,0 +1,22 @@
+name: CI Travel Booking
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t travel_booking_ci -f docker/php.Dockerfile .
+
+    - name: CI Success
+      run: echo "CI berhasil dijalankan!"
